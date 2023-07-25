@@ -51,6 +51,7 @@ Resources:
       SecurityGroups: [!Ref 'InstanceSecurityGroup']
       KeyName: !Ref 'KeyName'
       ImageId: !Ref 'LatestAmiId'
+      IamInstanceProfile: !Ref InstanceProfile
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -64,6 +65,13 @@ Resources:
         FromPort: 80
         ToPort: 80
         CidrIp: 0.0.0.0/0
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties: 
+      InstanceProfileName: !Sub ${AWS::StackName}-profile
+      Path: /
+      Roles: 
+       - EC2-AssumeRoleWithEC2ForDevopsGirls2023
   IPAddress:
     Type: AWS::EC2::EIP
   IPAssoc:

@@ -1,0 +1,5 @@
+---
+
+aws_account: 123456789
+aws_region: ap-southeast-1
+ecr_repo: hello-ops-girl
